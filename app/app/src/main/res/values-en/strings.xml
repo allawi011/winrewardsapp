@@ -10,3 +10,9 @@
     <string name="profile">My Account</string>
     <string name="withdraw">Withdraw</string>
 </resources>
+<resources>
+    <string name="app_name">Get Money</string>
+
+    <string name="splash_subtitle">Earn rewards from ads</string>
+    <string name="loading">Loading...</string>
+</resources>
