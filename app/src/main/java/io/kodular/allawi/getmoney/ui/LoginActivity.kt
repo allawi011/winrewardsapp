@@ -1,4 +1,3 @@
-
 package io.kodular.allawi.getmoney.ui
 
 import android.content.Intent
@@ -52,7 +51,7 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // اذا المستخدم اصلاً مسجل
+        // اذا المستخدم اصلاً مسجل دخول
         if (auth.currentUser != null) {
             goSplash()
             return
@@ -61,7 +60,12 @@ class LoginActivity : AppCompatActivity() {
         setupGoogle()
 
         binding.btnLogin.setOnClickListener { loginEmail() }
-        binding.btnRegister.setOnClickListener { registerEmail() }
+
+        // 🔥 هذا التعديل: يفتح صفحة RegisterActivity
+        binding.btnRegister.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
+        }
+
         binding.btnGoogle.setOnClickListener { signInGoogle() }
     }
 
@@ -88,19 +92,12 @@ class LoginActivity : AppCompatActivity() {
                 val name = user.displayName ?: "User"
                 val email = user.email ?: ""
 
+                // خزّن المستخدم في Firestore
                 repo.createUserIfNotExists(user.uid, name, email) { ok, _ ->
                     runOnUiThread {
                         showLoading(false)
                         if (ok) {
-                            // اذا المستخدم كتب كود دعوة (اختياري)
-                            val invite = binding.etInviteCode.text.toString().trim()
-                            if (invite.isNotEmpty()) {
-                                repo.applyInviteCode(user.uid, invite) { _, _ ->
-                                    goSplash()
-                                }
-                            } else {
-                                goSplash()
-                            }
+                            goSplash()
                         } else {
                             Toast.makeText(this, "Firestore error", Toast.LENGTH_SHORT).show()
                         }
@@ -132,47 +129,6 @@ class LoginActivity : AppCompatActivity() {
             .addOnFailureListener {
                 showLoading(false)
                 Toast.makeText(this, "فشل تسجيل الدخول", Toast.LENGTH_SHORT).show()
-            }
-    }
-
-    private fun registerEmail() {
-        val email = binding.etEmail.text.toString().trim()
-        val pass = binding.etPassword.text.toString().trim()
-
-        if (email.isEmpty() || pass.isEmpty()) {
-            Toast.makeText(this, "اكتب ايميل وباسورد", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        showLoading(true)
-
-        auth.createUserWithEmailAndPassword(email, pass)
-            .addOnSuccessListener {
-                val user = auth.currentUser ?: return@addOnSuccessListener
-
-                val name = email.substringBefore("@")
-                repo.createUserIfNotExists(user.uid, name, email) { ok, _ ->
-                    runOnUiThread {
-                        showLoading(false)
-                        if (ok) {
-                            // اذا المستخدم كتب كود دعوة
-                            val invite = binding.etInviteCode.text.toString().trim()
-                            if (invite.isNotEmpty()) {
-                                repo.applyInviteCode(user.uid, invite) { _, _ ->
-                                    goSplash()
-                                }
-                            } else {
-                                goSplash()
-                            }
-                        } else {
-                            Toast.makeText(this, "Firestore error", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-                }
-            }
-            .addOnFailureListener {
-                showLoading(false)
-                Toast.makeText(this, "فشل إنشاء الحساب", Toast.LENGTH_SHORT).show()
             }
     }
 
