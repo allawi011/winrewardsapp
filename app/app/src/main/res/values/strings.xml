@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Get Money</string>
+
+    <string name="points">النقاط:</string>
+
+    <string name="wheel">دولاب الحظ</string>
+    <string name="invite">دعوة صديق</string>
+    <string name="watch_ad">مشاهدة إعلان</string>
+    <string name="daily_reward">مكافأة يومية</string>
+    <string name="profile">حسابي</string>
+    <string name="withdraw">سحب المال</string>
+</resources>
