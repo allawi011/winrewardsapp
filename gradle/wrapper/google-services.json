@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1081708078651",
+    "firebase_url": "https://winrewardsapp-default-rtdb.firebaseio.com",
+    "project_id": "winrewardsapp",
+    "storage_bucket": "winrewardsapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1081708078651:android:377d870b631b06de539e1e",
+        "android_client_info": {
+          "package_name": "io.kodular.allawi.getmoney"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1081708078651-i7dsb4notcnhqq26iftghuocc5jnetcb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsKsak-9POrB26Ez8W10DeHT2uTNtDA0g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1081708078651-i7dsb4notcnhqq26iftghuocc5jnetcb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
