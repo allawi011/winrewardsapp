@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     android:background="#0D47A1">
 
-    <!-- Logo -->
     <ImageView
         android:id="@+id/imgLogo"
         android:layout_width="110dp"
@@ -20,12 +19,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintVertical_chainStyle="packed"/>
 
-    <!-- App Name -->
     <TextView
         android:id="@+id/tvAppName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Get Money"
+        android:text="@string/app_name"
         android:textColor="#FFFFFF"
         android:textSize="26sp"
         android:textStyle="bold"
@@ -34,12 +32,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Subtitle -->
     <TextView
         android:id="@+id/tvSub"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Earn rewards from ads"
+        android:text="@string/splash_subtitle"
         android:textColor="#DDE7FF"
         android:textSize="14sp"
         android:layout_marginTop="6dp"
@@ -47,7 +44,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Progress -->
     <ProgressBar
         android:id="@+id/progress"
         style="?android:attr/progressBarStyleLarge"
@@ -59,12 +55,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Footer -->
     <TextView
         android:id="@+id/tvFooter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Loading..."
+        android:text="@string/loading"
         android:textColor="#BBD1FF"
         android:textSize="13sp"
         android:layout_marginBottom="24dp"
