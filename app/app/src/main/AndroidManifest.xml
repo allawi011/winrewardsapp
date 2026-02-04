@@ -1,6 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Internet for Firebase + AdMob -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -17,7 +16,7 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-5117598639994532~3945737293" />
 
-        <!-- Splash (Launcher) -->
+        <!-- Splash -->
         <activity
             android:name=".ui.SplashActivity"
             android:exported="true">
@@ -27,10 +26,13 @@
             </intent-filter>
         </activity>
 
-        <!-- Login / Auth -->
-        <!-- ملاحظة: اذا انت مسميه LoginActivity احذف AuthActivity وخلي LoginActivity -->
+        <!-- Auth -->
         <activity
             android:name=".ui.LoginActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.RegisterActivity"
             android:exported="false" />
 
         <!-- Main -->
@@ -38,30 +40,23 @@
             android:name=".ui.MainActivity"
             android:exported="false" />
 
-<activity android:name=".ui.RegisterActivity" />
-
-        
-        <!-- Wheel -->
-        <activity
-            android:name=".ui.WheelActivity"
-            android:exported="false" />
-
-        <!-- Invite -->
-        <activity
-            android:name=".ui.InviteActivity"
-            android:exported="false" />
-
-        <!-- Daily Reward -->
+        <!-- Features -->
         <activity
             android:name=".ui.DailyRewardActivity"
             android:exported="false" />
 
-        <!-- Profile -->
+        <activity
+            android:name=".ui.InviteActivity"
+            android:exported="false" />
+
         <activity
             android:name=".ui.ProfileActivity"
             android:exported="false" />
 
-        <!-- Withdraw -->
+        <activity
+            android:name=".ui.WheelActivity"
+            android:exported="false" />
+
         <activity
             android:name=".ui.WithdrawActivity"
             android:exported="false" />
