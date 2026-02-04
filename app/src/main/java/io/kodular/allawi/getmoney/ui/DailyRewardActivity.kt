@@ -1,69 +1,70 @@
-
 package io.kodular.allawi.getmoney.ui
 
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import io.kodular.allawi.getmoney.data.FirestoreRepository
+import com.google.firebase.firestore.FirebaseFirestore
 import io.kodular.allawi.getmoney.databinding.ActivityDailyRewardBinding
 import io.kodular.allawi.getmoney.utils.Constants
-import io.kodular.allawi.getmoney.utils.Prefs
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 
 class DailyRewardActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDailyRewardBinding
     private val auth by lazy { FirebaseAuth.getInstance() }
-    private val repo by lazy { FirestoreRepository() }
-    private val prefs by lazy { Prefs(this) }
+    private val db by lazy { FirebaseFirestore.getInstance() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityDailyRewardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.btnBack.setOnClickListener { finish() }
 
         binding.btnClaim.setOnClickListener {
-            claimDaily()
+            claimDailyReward()
         }
     }
 
-    private fun claimDaily() {
+    private fun claimDailyReward() {
         val uid = auth.currentUser?.uid
         if (uid == null) {
-            Toast.makeText(this, "سجل دخول أولاً", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "يجب تسجيل الدخول", Toast.LENGTH_SHORT).show()
             finish()
             return
         }
 
-        val today = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
-        val last = prefs.getString("last_daily", "")
+        val userRef = db.collection(Constants.COL_USERS).document(uid)
 
-        if (last == today) {
-            Toast.makeText(this, "أخذت مكافأة اليوم مسبقاً ✅", Toast.LENGTH_LONG).show()
-            return
-        }
+        db.runTransaction { transaction ->
+            val snap = transaction.get(userRef)
 
-        binding.btnClaim.isEnabled = false
+            val currentPoints = snap.getLong(Constants.FIELD_POINTS) ?: 0L
+            val lastDaily = snap.getLong("lastDailyReward") ?: 0L
 
-        repo.addPoints(uid, Constants.POINTS_DAILY) { ok, msg ->
-            runOnUiThread {
-                binding.btnClaim.isEnabled = true
+            val now = System.currentTimeMillis()
+            val dayMillis = 24 * 60 * 60 * 1000L
 
-                if (ok) {
-                    prefs.setString("last_daily", today)
-                    Toast.makeText(
-                        this,
-                        "تمت إضافة ${Constants.POINTS_DAILY} نقطة 🎁",
-                        Toast.LENGTH_LONG
-                    ).show()
-                } else {
-                    Toast.makeText(this, "خطأ: $msg", Toast.LENGTH_SHORT).show()
-                }
+            // اذا استلم قبل اقل من 24 ساعة
+            if (now - lastDaily < dayMillis) {
+                throw Exception("NOT_READY")
+            }
+
+            val newPoints = currentPoints + Constants.POINTS_DAILY
+
+            transaction.update(userRef, Constants.FIELD_POINTS, newPoints)
+            transaction.update(userRef, "lastDailyReward", now)
+
+            newPoints
+        }.addOnSuccessListener {
+            Toast.makeText(this, "🎁 تم استلام المكافأة اليومية +${Constants.POINTS_DAILY} نقطة", Toast.LENGTH_SHORT).show()
+            finish()
+        }.addOnFailureListener { e ->
+            if (e.message == "NOT_READY") {
+                Toast.makeText(this, "❌ استلمت مكافأتك اليوم، تعال باچر", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "خطأ: ${e.message}", Toast.LENGTH_SHORT).show()
             }
         }
     }
