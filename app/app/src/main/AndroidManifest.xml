@@ -38,6 +38,9 @@
             android:name=".ui.MainActivity"
             android:exported="false" />
 
+<activity android:name=".ui.RegisterActivity" />
+
+        
         <!-- Wheel -->
         <activity
             android:name=".ui.WheelActivity"
