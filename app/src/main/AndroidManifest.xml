@@ -5,14 +5,13 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/Theme.App">
 
-        <!-- Splash -->
         <activity
-            android:name="io.kodular.allawi.getmoney.SplashActivity"
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,35 +19,11 @@
             </intent-filter>
         </activity>
 
-        <!-- Login -->
-        <activity
-            android:name="io.kodular.allawi.getmoney.LoginActivity"
-            android:exported="false" />
-
-        <!-- Register -->
-        <activity
-            android:name="io.kodular.allawi.getmoney.RegisterActivity"
-            android:exported="false" />
-
-        <!-- Main -->
-        <activity
-            android:name="io.kodular.allawi.getmoney.MainActivity"
-            android:exported="false" />
-
-        <!-- Daily Reward -->
-        <activity
-            android:name="io.kodular.allawi.getmoney.DailyRewardActivity"
-            android:exported="false" />
-
-        <!-- Invite -->
-        <activity
-            android:name="io.kodular.allawi.getmoney.InviteActivity"
-            android:exported="false" />
-
-        <!-- Profile -->
-        <activity
-            android:name="io.kodular.allawi.getmoney.ProfileActivity"
-            android:exported="false" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".DailyRewardActivity" />
+        <activity android:name=".ProfileActivity" />
 
     </application>
 
