@@ -1,12 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- App -->
     <string name="app_name">Win Rewards</string>
 
-    <string name="login">Login</string>
-    <string name="register">Register</string>
-    <string name="profile">Profile</string>
+    <!-- Auth -->
+    <string name="login">تسجيل الدخول</string>
+    <string name="register">إنشاء حساب</string>
+    <string name="email">البريد الإلكتروني</string>
+    <string name="password">كلمة المرور</string>
+    <string name="confirm_password">تأكيد كلمة المرور</string>
+    <string name="logout">تسجيل الخروج</string>
 
-    <string name="daily_reward">Daily Reward</string>
+    <!-- General -->
+    <string name="loading">جاري التحميل...</string>
+    <string name="continue_txt">متابعة</string>
+    <string name="cancel">إلغاء</string>
+    <string name="ok">موافق</string>
+
+    <!-- Rewards -->
+    <string name="daily_reward">المكافأة اليومية</string>
+    <string name="invite_friends">دعوة الأصدقاء</string>
+    <string name="spin_wheel">عجلة الحظ</string>
+    <string name="withdraw">سحب الأرباح</string>
+    <string name="points">النقاط</string>
+
+    <!-- Messages -->
+    <string name="login_success">تم تسجيل الدخول بنجاح</string>
+    <string name="login_failed">فشل تسجيل الدخول</string>
+    <string name="register_success">تم إنشاء الحساب بنجاح</string>
+    <string name="register_failed">فشل إنشاء الحساب</string>
 
 </resources>
