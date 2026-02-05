@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.winrewardsapp">
-
-    <!-- صلاحيات أساسية -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    package="io.kodular.allawi.getmoney">
 
     <application
         android:allowBackup="true"
@@ -12,11 +8,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.WinRewardsApp">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         <!-- Splash -->
         <activity
-            android:name=".SplashActivity"
+            android:name="io.kodular.allawi.getmoney.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,32 +22,32 @@
 
         <!-- Login -->
         <activity
-            android:name=".LoginActivity"
+            android:name="io.kodular.allawi.getmoney.LoginActivity"
             android:exported="false" />
 
         <!-- Register -->
         <activity
-            android:name=".RegisterActivity"
+            android:name="io.kodular.allawi.getmoney.RegisterActivity"
             android:exported="false" />
 
         <!-- Main -->
         <activity
-            android:name=".MainActivity"
+            android:name="io.kodular.allawi.getmoney.MainActivity"
             android:exported="false" />
 
         <!-- Daily Reward -->
         <activity
-            android:name=".DailyRewardActivity"
+            android:name="io.kodular.allawi.getmoney.DailyRewardActivity"
             android:exported="false" />
 
         <!-- Invite -->
         <activity
-            android:name=".InviteActivity"
+            android:name="io.kodular.allawi.getmoney.InviteActivity"
             android:exported="false" />
 
         <!-- Profile -->
         <activity
-            android:name=".ProfileActivity"
+            android:name="io.kodular.allawi.getmoney.ProfileActivity"
             android:exported="false" />
 
     </application>
