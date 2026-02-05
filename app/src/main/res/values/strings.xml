@@ -1,5 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">Win Rewards</string>
+
     <string name="login">Login</string>
     <string name="register">Register</string>
+    <string name="profile">Profile</string>
+
+    <string name="daily_reward">Daily Reward</string>
+
 </resources>
